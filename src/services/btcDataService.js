@@ -1,13 +1,9 @@
 import { ACTIVE_DATA_SOURCE, DATA_SOURCES } from '../config/dataSource.js'
 import { btcHistoricalSample } from '../data/btcHistoricalSample.js'
-import { isValidHistoricalData } from '../utils/dataValidation.js'
+import { normalizeBtcHistoricalData } from '../utils/dataValidation.js'
 
 function getSampleData() {
-  if (!isValidHistoricalData(btcHistoricalSample)) {
-    throw new Error('Local BTC sample data is invalid.')
-  }
-
-  return btcHistoricalSample
+  return normalizeBtcHistoricalData(btcHistoricalSample)
 }
 
 export function getBtcHistoricalData() {
