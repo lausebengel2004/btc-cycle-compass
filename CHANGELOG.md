@@ -3,6 +3,17 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.12.0] - 2026-05-04
+
+### Added
+
+- Lokaler CSV-Import im Browser mit `FileReader`.
+- Temporärer Wechsel von Sample-Daten auf validierte CSV-Daten für KPIs, Chart
+  und Datenquellenstatus.
+- Reset zurück zu lokalen Beispieldaten.
+- Weiterhin keine API, keine Netzwerk-Requests, kein Upload und keine neue
+  Dependency.
+
 ## [0.11.0] - 2026-05-04
 
 ### Added

@@ -37,12 +37,25 @@ export function getBtcDataSourceStatus() {
   const data = getBtcHistoricalData()
   const { sourceKey, source } = resolveActiveDataSource()
 
-  return {
+  return createBtcDataSourceStatus(data, {
     sourceKey,
     sourceLabel: source.label,
     isLive: source.isLive,
+  })
+}
+
+export function createBtcDataSourceStatus(
+  data,
+  { sourceKey, sourceLabel, isLive },
+) {
+  const normalizedData = normalizeBtcHistoricalData(data)
+
+  return {
+    sourceKey,
+    sourceLabel,
+    isLive,
     isValidated: true,
-    dataPointCount: data.length,
-    latestPoint: data.at(-1),
+    dataPointCount: normalizedData.length,
+    latestPoint: normalizedData.at(-1),
   }
 }

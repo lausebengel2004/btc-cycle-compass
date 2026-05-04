@@ -44,6 +44,8 @@ export function createKpisFromHistoricalData(data) {
   const oneYearCagrs = sortedData
     .slice(1)
     .map((item, index) => calculateCagr(item.close, sortedData[index].close, 1))
+  const fourYearAverageCagr = average(fourYearCagrs)
+  const oneYearAverageCagr = average(oneYearCagrs)
 
   return [
     { label: 'BTC Close', value: formatCurrency(latest.close) },
@@ -53,11 +55,13 @@ export function createKpisFromHistoricalData(data) {
     },
     {
       label: '4-Year Average CAGR',
-      value: formatPercent(average(fourYearCagrs)),
+      value:
+        fourYearAverageCagr === null ? '-' : formatPercent(fourYearAverageCagr),
     },
     {
       label: '1-Year Average CAGR',
-      value: formatPercent(average(oneYearCagrs)),
+      value:
+        oneYearAverageCagr === null ? '-' : formatPercent(oneYearAverageCagr),
     },
     { label: 'Cycle Min', value: formatCurrency(Math.min(...closes)) },
     { label: 'Cycle Max', value: formatCurrency(Math.max(...closes)) },

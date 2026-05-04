@@ -1,5 +1,4 @@
 import { halvingEvents } from '../data/halvingEvents.js'
-import { getBtcHistoricalData } from '../services/btcDataService.js'
 import {
   createChartPoints,
   createSvgPath,
@@ -33,8 +32,8 @@ function addDays(date, days) {
   return nextDate.toISOString().slice(0, 10)
 }
 
-export function BtcCycleChart() {
-  const points = createChartPoints(getBtcHistoricalData(), chartBounds)
+export function BtcCycleChart({ data }) {
+  const points = createChartPoints(data, chartBounds)
 
   if (points.length === 0) {
     return (
@@ -84,7 +83,7 @@ export function BtcCycleChart() {
           role="img"
           aria-labelledby="btc-chart-title btc-chart-description"
         >
-          <title id="btc-chart-title">BTC Verlauf aus Beispieldaten</title>
+          <title id="btc-chart-title">BTC Verlauf aus lokalen Daten</title>
           <desc id="btc-chart-description">
             Linienchart mit lokalen Bitcoin-Schlusskursen von{' '}
             {formatYear(firstPoint.date)} bis {formatYear(lastPoint.date)}.

@@ -8,8 +8,7 @@ function formatUsd(value) {
   }).format(value)
 }
 
-export function DataSourceStatus() {
-  const status = getBtcDataSourceStatus()
+export function DataSourceStatus({ status = getBtcDataSourceStatus() }) {
 
   return (
     <section className="data-source-status" aria-label="Datenquellenstatus">
