@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.13.0] - 2026-05-04
+
+### Added
+
+- Beispiel-CSV unter `examples/btc-example.csv`.
+- README-Anleitung für den lokalen CSV-Import.
+- Dokumentation häufiger CSV-Fehler.
+- Kurzer Format-Hinweis im Import-Panel.
+
 ## [0.12.0] - 2026-05-04
 
 ### Added

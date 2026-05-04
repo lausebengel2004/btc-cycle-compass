@@ -3,9 +3,9 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.12.0 ergänzt einen lokalen CSV-Import im Browser. Aktuell startet die
-App weiterhin mit lokalen Beispieldaten, nutzt keine Live-Datenquelle und
-validiert Daten vor der Anzeige.
+Version 0.13.0 ergänzt eine Beispiel-CSV und eine klarere Anleitung für den
+lokalen CSV-Import. Aktuell startet die App weiterhin mit lokalen
+Beispieldaten, nutzt keine Live-Datenquelle und validiert Daten vor der Anzeige.
 
 ## Aktueller MVP-Status
 
@@ -43,6 +43,44 @@ Format `YYYY-MM-DD` vorliegen. `close` muss eine positive Zahl sein;
 Dezimalpunkte sind möglich, Dezimalkommas werden nicht unterstützt. CSV-Daten
 werden nur lokal im Browser verarbeitet, nicht hochgeladen und nicht
 gespeichert. Es gibt weiterhin keine API und keine Live-Datenquelle.
+
+## Lokaler CSV-Import
+
+Die App startet standardmäßig mit lokalen Beispieldaten. Nutzer können im
+Browser eine eigene CSV-Datei auswählen. Die Datei wird nur lokal im Browser
+verarbeitet: Es findet kein Upload statt, es gibt keine Speicherung und keinen
+Serverkontakt. CSV-Daten gelten nur für die aktuelle Sitzung. Mit „Zurück zu
+Beispieldaten“ kann wieder auf die Standarddaten gewechselt werden.
+
+Eine Beispiel-Datei liegt unter `examples/btc-example.csv`.
+
+Erwartetes Format:
+
+```csv
+date,close
+2020-01-01,7200
+2021-01-01,29300
+```
+
+Regeln:
+
+- Header muss exakt `date,close` lauten
+- Datum im Format `YYYY-MM-DD`
+- `close` als positive Zahl
+- Dezimalpunkt erlaubt
+- Dezimalkomma nicht unterstützt
+- Leere Zeilen werden ignoriert
+- Doppelte Datumswerte sind nicht erlaubt
+- Ungültige Daten erzeugen eine Fehlermeldung
+
+## Häufige CSV-Fehler
+
+- Falscher Header, z. B. `Date,Close`
+- Deutsches Dezimalkomma, z. B. `7200,50`
+- Fehlendes Datum
+- Negativer oder leerer Close-Wert
+- Doppelte Datumswerte
+- Falsches Datumsformat, z. B. `01.01.2020`
 
 ## Lokal starten
 

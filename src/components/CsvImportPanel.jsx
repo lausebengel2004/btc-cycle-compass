@@ -55,6 +55,10 @@ export function CsvImportPanel({ onDataLoaded, onReset }) {
       <div>
         <h2>CSV-Import</h2>
         <p>Die Datei wird nur lokal im Browser verarbeitet und nicht hochgeladen.</p>
+        <p className="csv-import-panel__hint">
+          Erwartetes Format: date,close mit Datum im Format YYYY-MM-DD. Eine
+          Beispiel-Datei liegt unter examples/btc-example.csv.
+        </p>
       </div>
       <div className="csv-import-panel__controls">
         <label className="csv-import-panel__file">
