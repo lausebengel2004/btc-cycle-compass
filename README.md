@@ -3,9 +3,18 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.9.0 ergänzt eine minimale Interpretationskarte unterhalb des Charts.
-Aktuell nutzt die App weiterhin lokale Beispieldaten, keine Live-Datenquelle und
-validiert Daten vor der Anzeige.
+Version 0.10.0 schließt die technische MVP-Basis ab. Aktuell nutzt die App
+weiterhin lokale Beispieldaten, keine Live-Datenquelle und validiert Daten vor
+der Anzeige.
+
+## Aktueller MVP-Status
+
+- Öffentlich teilbare statische React/Vite-App
+- Aktuell lokale Beispieldaten
+- Keine Live-Kursdaten
+- Keine Anlageberatung
+- Vorbereitet für spätere Datenquellen
+- GitHub Pages geeignet
 
 ## Data Source Architecture
 
@@ -43,3 +52,20 @@ npm run deploy
 
 Die Vite-Basis ist für ein GitHub-Pages-Projekt unter `/btc-cycle-compass/`
 vorbereitet.
+
+## Bekannte Grenzen
+
+- Beispieldaten sind nicht vollständig historisch
+- Keine automatische Aktualisierung
+- Keine Prognosefunktion
+- Keine Berücksichtigung von On-Chain-Daten, Makrodaten oder Liquiditätsdaten
+- Chart dient aktuell der methodischen Visualisierung
+
+## Nächste mögliche Ausbaustufen
+
+- Vollständiger CSV-Import
+- Echte historische BTC-Tagesdaten
+- Logarithmische Chart-Skalierung
+- Zyklusvergleich nach Halving
+- Export/Share-Snapshot
+- Optional spätere API-Anbindung
