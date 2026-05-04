@@ -144,3 +144,7 @@ vite.config.ts.timestamp-*
 
 # Local data extracts with unresolved redistribution rights
 examples/btc-daily-clean.csv
+
+# Claude Code – lokale Konfiguration und persönliche Kontextdateien
+CLAUDE.md
+meta/
