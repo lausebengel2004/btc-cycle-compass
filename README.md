@@ -3,8 +3,8 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.4.0 ergänzt dezente Halving-Markierungen im lokalen SVG-Chart. Die
-Daten sind Beispieldaten und keine Live-Marktdaten.
+Version 0.5.0 ergänzt eine Chart-Legende und einen Datenhinweis. Aktuell nutzt
+die App lokale Beispieldaten und keine Live-Marktdaten.
 
 ## Lokal starten
 
