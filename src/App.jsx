@@ -1,4 +1,4 @@
-import { ChartPlaceholder } from './components/ChartPlaceholder.jsx'
+import { BtcCycleChart } from './components/BtcCycleChart.jsx'
 import { Disclaimer } from './components/Disclaimer.jsx'
 import { Header } from './components/Header.jsx'
 import { KpiGrid } from './components/KpiGrid.jsx'
@@ -10,7 +10,7 @@ export default function App() {
     <main className="app-shell">
       <Header />
       <KpiGrid items={kpis} />
-      <ChartPlaceholder />
+      <BtcCycleChart />
       <Methodology />
       <Disclaimer />
     </main>

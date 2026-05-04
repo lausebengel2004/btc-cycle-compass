@@ -172,6 +172,53 @@ h1 {
   font-size: 0.9rem;
 }
 
+.chart-frame--data {
+  display: block;
+  padding: 22px;
+}
+
+.chart-frame--data::before {
+  display: none;
+}
+
+.btc-chart {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  min-height: 300px;
+}
+
+.btc-chart__axis {
+  stroke: rgba(36, 77, 92, 0.48);
+  stroke-width: 2;
+}
+
+.btc-chart__grid-line {
+  stroke: rgba(36, 77, 92, 0.14);
+  stroke-width: 1;
+}
+
+.btc-chart__line {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.btc-chart__point {
+  fill: var(--panel);
+  stroke: var(--accent-dark);
+  stroke-width: 3;
+}
+
+.btc-chart__label {
+  fill: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.8rem;
+}
+
 .content-section,
 .disclaimer {
   border: 1px solid var(--line);
