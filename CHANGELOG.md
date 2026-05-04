@@ -3,6 +3,14 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.19.0] - 2026-05-04
+
+### Changed
+
+- Zentrale USD-Formatierung für KPI-, Status-, Import- und Chart-Anzeigen.
+- Positive historische Kleinstwerte werden nicht mehr als `$0` dargestellt.
+- Preisformatierung betrifft nur die Anzeige, nicht die Berechnungslogik.
+
 ## [0.18.0] - 2026-05-04
 
 ### Added

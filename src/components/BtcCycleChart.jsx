@@ -1,4 +1,5 @@
 import { halvingEvents } from '../data/halvingEvents.js'
+import { formatCompactUsd } from '../utils/formatters.js'
 import {
   createChartPoints,
   createSvgPath,
@@ -14,19 +15,6 @@ const chartBounds = {
 }
 
 const markerVisibilityLimit = 120
-
-function formatCompactUsd(value) {
-  if (value < 1) {
-    return `$${value.toFixed(1)}`
-  }
-
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    notation: 'compact',
-    maximumFractionDigits: value >= 10000 ? 0 : 1,
-  }).format(value)
-}
 
 function formatYear(date) {
   return new Date(`${date}T00:00:00`).getFullYear()

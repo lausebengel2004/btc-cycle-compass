@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.18.0 erweitert den KPI-Bereich um ATH- und Drawdown-Kennzahlen.
+Version 0.19.0 verbessert die Anzeige kleiner historischer BTC-Preise.
 Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -29,6 +29,10 @@ Der KPI-Bereich enthält neben Zyklus- und CAGR-Werten auch ATH-/Drawdown-Werte.
 vom ATH` zeigt den prozentualen Abstand vom ATH aus gesehen. `Weg zurück zum
 ATH` zeigt den notwendigen prozentualen Anstieg vom aktuellen Wert zurück zum
 ATH.
+
+Kleine historische BTC-Preise werden in der Anzeige mit ausreichend
+Nachkommastellen formatiert, damit positive Werte nicht als `$0` erscheinen.
+Diese Formatierung betrifft nur die Darstellung, nicht die Berechnung.
 
 ## Datenvertrag
 

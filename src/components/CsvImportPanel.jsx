@@ -1,19 +1,12 @@
 import { useRef, useState } from 'react'
 import { parseBtcCsv } from '../utils/csvParser.js'
+import { formatUsd } from '../utils/formatters.js'
 
 export function CsvImportPanel({ onDataLoaded, onReset }) {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [importSummary, setImportSummary] = useState(null)
   const fileInputRef = useRef(null)
-
-  function formatUsd(value) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0,
-    }).format(value)
-  }
 
   function resetInput() {
     if (fileInputRef.current) {

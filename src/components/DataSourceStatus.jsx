@@ -1,12 +1,5 @@
 import { getBtcDataSourceStatus } from '../services/btcDataService.js'
-
-function formatUsd(value) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(value)
-}
+import { formatUsd } from '../utils/formatters.js'
 
 export function DataSourceStatus({ status = getBtcDataSourceStatus() }) {
 

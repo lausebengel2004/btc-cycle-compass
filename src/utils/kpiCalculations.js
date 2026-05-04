@@ -1,10 +1,4 @@
-function formatCurrency(value) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(value)
-}
+import { formatUsd } from './formatters.js'
 
 function formatPercent(value) {
   return new Intl.NumberFormat('en-US', {
@@ -68,7 +62,7 @@ export function createKpisFromHistoricalData(data) {
   const oneYearAverageCagr = average(oneYearCagrs)
 
   return [
-    { label: 'BTC Close', value: formatCurrency(latest.close) },
+    { label: 'BTC Close', value: formatUsd(latest.close) },
     {
       label: '4-Year CAGR',
       value: fourYearCagr === null ? '-' : formatPercent(fourYearCagr),
@@ -83,10 +77,10 @@ export function createKpisFromHistoricalData(data) {
       value:
         oneYearAverageCagr === null ? '-' : formatPercent(oneYearAverageCagr),
     },
-    { label: 'Cycle Min', value: formatCurrency(Math.min(...closes)) },
+    { label: 'Cycle Min', value: formatUsd(Math.min(...closes)) },
     {
       label: 'ATH / Cycle Max',
-      value: formatCurrency(athClose),
+      value: formatUsd(athClose),
       detail: isAtAth ? `am ATH seit ${athPoint.date}` : `am ${athPoint.date}`,
     },
     {
