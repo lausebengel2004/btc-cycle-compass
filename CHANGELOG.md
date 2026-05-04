@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.15.0] - 2026-05-04
+
+### Added
+
+- Mehrere datenbasierte Y-Achsen-Ticks im BTC-Chart.
+- Lesbare kompakte Preislabels für lineare und logarithmische Skala.
+- Import-Qualitätszusammenfassung nach erfolgreichem CSV-Import.
+- Klarere CSV-Fehlermeldungen für lokale Importfehler.
+
 ## [0.14.0] - 2026-05-04
 
 ### Added

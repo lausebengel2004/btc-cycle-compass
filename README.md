@@ -3,7 +3,8 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.14.0 ergänzt eine optionale lineare/logarithmische Chart-Skalierung.
+Version 0.15.0 verbessert die Y-Achsen-Beschriftung und zeigt nach CSV-Import
+eine Import-Qualitätszusammenfassung.
 Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -82,12 +83,21 @@ Regeln:
 - Doppelte Datumswerte
 - Falsches Datumsformat, z. B. `01.01.2020`
 
+## Was beim CSV-Import geprüft wird
+
+Beim lokalen CSV-Import prüft die App den exakten Header `date,close`, gültige
+Datumswerte im Format `YYYY-MM-DD`, positive endliche Schlusskurse, leere oder
+fehlende Werte und doppelte Datumswerte. Nach erfolgreichem Import zeigt die App
+eine kurze Zusammenfassung mit Datenquelle, Validierungsstatus, Datenpunktzahl,
+Zeitraum und letztem Wert.
+
 ## Chart-Skalierung
 
 Der Chart startet standardmäßig mit linearer Skala. Die lineare Skala zeigt
 absolute Preisbewegungen. Optional kann auf logarithmische Skala gewechselt
 werden; sie macht prozentuale Preisbewegungen über große Preisbereiche besser
-vergleichbar.
+vergleichbar. Die Y-Achse zeigt mehrere aus dem aktuellen Datenbereich
+berechnete Preisstufen.
 
 ## Lokal starten
 

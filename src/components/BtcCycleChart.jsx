@@ -2,8 +2,8 @@ import { halvingEvents } from '../data/halvingEvents.js'
 import {
   createChartPoints,
   createSvgPath,
+  createYAxisTicks,
   dateToX,
-  getMinMax,
 } from '../utils/chartUtils.js'
 
 const chartBounds = {
@@ -18,7 +18,7 @@ function formatCompactUsd(value) {
     style: 'currency',
     currency: 'USD',
     notation: 'compact',
-    maximumFractionDigits: 1,
+    maximumFractionDigits: value >= 10000 ? 0 : 1,
   }).format(value)
 }
 
@@ -47,8 +47,7 @@ export function BtcCycleChart({ data, scaleMode = 'linear' }) {
   }
 
   const path = createSvgPath(points)
-  const closes = points.map((point) => point.close)
-  const { min, max } = getMinMax(closes)
+  const yAxisTicks = createYAxisTicks(points, chartBounds, scaleMode)
   const firstPoint = points[0]
   const lastPoint = points.at(-1)
   const visibleHalvings = halvingEvents
@@ -108,21 +107,20 @@ export function BtcCycleChart({ data, scaleMode = 'linear' }) {
             y2={chartBounds.bottom}
           />
 
-          {[0.25, 0.5, 0.75].map((ratio) => {
-            const y =
-              chartBounds.top + (chartBounds.bottom - chartBounds.top) * ratio
-
-            return (
+          {yAxisTicks.map((tick) => (
+            <g key={tick.value}>
               <line
-                key={ratio}
                 className="btc-chart__grid-line"
                 x1={chartBounds.left}
-                y1={y}
+                y1={tick.y}
                 x2={chartBounds.right}
-                y2={y}
+                y2={tick.y}
               />
-            )
-          })}
+              <text className="btc-chart__label" x="18" y={tick.y + 4}>
+                {formatCompactUsd(tick.value)}
+              </text>
+            </g>
+          ))}
 
           {visibleHalvings.map((event) => (
             <rect
@@ -166,12 +164,6 @@ export function BtcCycleChart({ data, scaleMode = 'linear' }) {
             />
           ))}
 
-          <text className="btc-chart__label" x="18" y={chartBounds.top + 6}>
-            {formatCompactUsd(max)}
-          </text>
-          <text className="btc-chart__label" x="18" y={chartBounds.bottom + 4}>
-            {formatCompactUsd(min)}
-          </text>
           <text
             className="btc-chart__label"
             x={chartBounds.left}

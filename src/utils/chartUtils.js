@@ -50,10 +50,51 @@ function getYScaleValue(value, scaleMode) {
   return value
 }
 
-export function createChartPoints(data, bounds, scaleMode = 'linear') {
+function validateScaleMode(scaleMode) {
   if (!['linear', 'log'].includes(scaleMode)) {
     throw new Error(`Unsupported chart scale mode: ${scaleMode}.`)
   }
+}
+
+function getYScaleDomain(closes, scaleMode) {
+  const scaledCloses = closes.map((close) => getYScaleValue(close, scaleMode))
+  const { min: scaledMin, max: scaledMax } = getMinMax(scaledCloses)
+  const padding = (scaledMax - scaledMin || scaledMax || 1) * 0.08
+
+  return {
+    yMin: scaledMin - padding,
+    yMax: scaledMax + padding,
+  }
+}
+
+export function createYAxisTicks(data, bounds, scaleMode = 'linear', count = 5) {
+  validateScaleMode(scaleMode)
+
+  const closes = data.map((item) => item.close)
+  const { min, max } = getMinMax(closes)
+  const { yMin, yMax } = getYScaleDomain(closes, scaleMode)
+  const tickCount = Math.max(2, count)
+
+  return Array.from({ length: tickCount }, (_, index) => {
+    const ratio = index / (tickCount - 1)
+    const value =
+      scaleMode === 'log'
+        ? 10 ** scaleLinear(ratio, 0, 1, Math.log10(min), Math.log10(max))
+        : scaleLinear(ratio, 0, 1, min, max)
+    const y = scaleLinear(
+      getYScaleValue(value, scaleMode),
+      yMin,
+      yMax,
+      bounds.bottom,
+      bounds.top,
+    )
+
+    return { value, y }
+  })
+}
+
+export function createChartPoints(data, bounds, scaleMode = 'linear') {
+  validateScaleMode(scaleMode)
 
   const validData = data.filter(
     (item) => item.date && Number.isFinite(item.close),
@@ -65,14 +106,9 @@ export function createChartPoints(data, bounds, scaleMode = 'linear') {
 
   const sortedData = [...validData].sort((a, b) => a.date.localeCompare(b.date))
   const closes = sortedData.map((item) => item.close)
-  const scaledCloses = closes.map((close) => getYScaleValue(close, scaleMode))
-  const { min, max } = getMinMax(closes)
-  const { min: scaledMin, max: scaledMax } = getMinMax(scaledCloses)
   const firstDate = sortedData[0].date
   const lastDate = sortedData.at(-1).date
-  const padding = (scaledMax - scaledMin || scaledMax || 1) * 0.08
-  const yMin = scaledMin - padding
-  const yMax = scaledMax + padding
+  const { yMin, yMax } = getYScaleDomain(closes, scaleMode)
 
   return sortedData.map((item) => ({
     date: item.date,

@@ -5,14 +5,20 @@ const expectedHeader = 'date,close'
 function parseCsvLine(line, lineNumber) {
   const columns = line.split(',')
 
+  if (columns.length > 2) {
+    throw new Error(
+      `CSV line ${lineNumber} has too many columns. Decimal commas such as 7200,50 are not supported.`,
+    )
+  }
+
   if (columns.length !== 2) {
     throw new Error(`CSV line ${lineNumber} must contain exactly date and close.`)
   }
 
   const [date, closeText] = columns.map((value) => value.trim())
 
-  if (closeText.includes(',')) {
-    throw new Error(`CSV line ${lineNumber} uses an unsupported decimal comma.`)
+  if (date === '') {
+    throw new Error(`CSV line ${lineNumber} is missing a date value.`)
   }
 
   if (closeText === '') {
@@ -53,5 +59,9 @@ export function parseBtcCsv(csvText) {
     .slice(1)
     .map((line, index) => parseCsvLine(line, index + 2))
 
-  return normalizeBtcHistoricalData(parsedData)
+  try {
+    return normalizeBtcHistoricalData(parsedData)
+  } catch (error) {
+    throw new Error(`CSV validation failed: ${error.message}`)
+  }
 }

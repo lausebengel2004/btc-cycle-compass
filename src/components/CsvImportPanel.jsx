@@ -4,7 +4,16 @@ import { parseBtcCsv } from '../utils/csvParser.js'
 export function CsvImportPanel({ onDataLoaded, onReset }) {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [importSummary, setImportSummary] = useState(null)
   const fileInputRef = useRef(null)
+
+  function formatUsd(value) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    }).format(value)
+  }
 
   function resetInput() {
     if (fileInputRef.current) {
@@ -17,6 +26,7 @@ export function CsvImportPanel({ onDataLoaded, onReset }) {
 
     setError('')
     setMessage('')
+    setImportSummary(null)
 
     if (!file) {
       return
@@ -27,10 +37,20 @@ export function CsvImportPanel({ onDataLoaded, onReset }) {
     reader.onload = () => {
       try {
         const parsedData = parseBtcCsv(String(reader.result || ''))
+        const firstPoint = parsedData[0]
+        const latestPoint = parsedData.at(-1)
+
         onDataLoaded(parsedData, file.name)
         setMessage(`${file.name} wurde lokal geladen und validiert.`)
+        setImportSummary({
+          dataPointCount: parsedData.length,
+          firstDate: firstPoint.date,
+          lastDate: latestPoint.date,
+          latestPoint,
+        })
       } catch (csvError) {
         setError(csvError.message)
+        setImportSummary(null)
         resetInput()
       }
     }
@@ -46,6 +66,7 @@ export function CsvImportPanel({ onDataLoaded, onReset }) {
   function handleReset() {
     setError('')
     setMessage('')
+    setImportSummary(null)
     resetInput()
     onReset()
   }
@@ -75,6 +96,20 @@ export function CsvImportPanel({ onDataLoaded, onReset }) {
         </button>
       </div>
       {message ? <p className="csv-import-panel__message">{message}</p> : null}
+      {importSummary ? (
+        <div className="csv-import-panel__summary" aria-label="Import-Zusammenfassung">
+          <span>Datenquelle: CSV-Datei</span>
+          <span>Status: validiert</span>
+          <span>Datenpunkte: {importSummary.dataPointCount}</span>
+          <span>
+            Zeitraum: {importSummary.firstDate} bis {importSummary.lastDate}
+          </span>
+          <span>
+            Letzter Wert: {importSummary.latestPoint.date} ·{' '}
+            {formatUsd(importSummary.latestPoint.close)}
+          </span>
+        </div>
+      ) : null}
       {error ? <p className="csv-import-panel__error">{error}</p> : null}
     </section>
   )
