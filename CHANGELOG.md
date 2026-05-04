@@ -3,6 +3,15 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.20.0] - 2026-05-04
+
+### Changed
+
+- Projektstand nach `0.19.0` konsolidiert.
+- README, ROADMAP und Meta-Kontext auf den aktuellen Stand abgeglichen.
+- Aktuelle Grenzen der App und nächste Entwicklungsphasen klarer dokumentiert.
+- Keine Funktionsänderung, keine neue Dependency und keine API-Anbindung.
+
 ## [0.19.0] - 2026-05-04
 
 ### Changed

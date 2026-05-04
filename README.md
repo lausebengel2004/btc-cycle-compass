@@ -3,24 +3,32 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.19.0 verbessert die Anzeige kleiner historischer BTC-Preise.
-Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
+Aktueller Stand: Version 0.20.0. Die App startet mit lokalen Beispieldaten,
+unterstützt temporären lokalen CSV-Import im Browser, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
 ## Aktueller MVP-Status
 
 - Öffentlich teilbare statische React/Vite-App
-- Aktuell lokale Beispieldaten
+- Lokale Beispieldaten als Standard
+- Lokaler CSV-Import per `FileReader`
+- KPI-Bereich mit CAGR-, Zyklus-, ATH- und Drawdown-Kennzahlen
+- SVG-Chart mit linearer und logarithmischer Skala
+- Datenquellenstatus, Interpretationskarte, Legende und Methodikbereich
 - Keine Live-Kursdaten
+- Keine API-Anbindung
+- Keine Speicherung importierter CSV-Dateien
 - Keine Anlageberatung
 - Vorbereitet für spätere Datenquellen
 - GitHub Pages geeignet
 
 ## Data Source Architecture
 
-Aktuell nutzt die App lokale Beispieldaten. Die aktive Datenquelle ist zentral
-über `src/config/dataSource.js` vorbereitet. Eine echte API- oder CSV-Anbindung
-ist für spätere Versionen vorgesehen.
+Aktuell nutzt die App beim Start lokale Beispieldaten. Zusätzlich können
+Nutzer CSV-Dateien temporär im Browser importieren; diese Daten ersetzen die
+aktive Ansicht nur für die laufende Sitzung. Die Datenquelle ist zentral über
+`src/config/dataSource.js` vorbereitet. Eine echte API-Anbindung ist für
+spätere Versionen vorgesehen, aber nicht aktiv.
 
 ## KPI-Kennzahlen
 
@@ -137,15 +145,18 @@ vorbereitet.
 
 - Beispieldaten sind nicht vollständig historisch
 - Keine automatische Aktualisierung
+- Keine Live-Daten und keine API
+- Keine Speicherung importierter CSV-Dateien
+- Große lokale CSV-Dateien bleiben aus Lizenzgründen ungetrackt
 - Keine Prognosefunktion
 - Keine Berücksichtigung von On-Chain-Daten, Makrodaten oder Liquiditätsdaten
 - Chart dient aktuell der methodischen Visualisierung
 
 ## Nächste mögliche Ausbaustufen
 
-- Vollständiger CSV-Import
-- Echte historische BTC-Tagesdaten
-- Logarithmische Chart-Skalierung
+- Lizenz-/Quellenklärung für große BTC-CSV-Dateien
+- Bessere CSV-Datenprüfung und Import-Hilfen
 - Zyklusvergleich nach Halving
 - Export/Share-Snapshot
+- Echte historische BTC-Tagesdaten aus geklärter Quelle
 - Optional spätere API-Anbindung
