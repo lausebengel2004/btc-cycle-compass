@@ -117,6 +117,37 @@ h1 {
   line-height: 1;
 }
 
+.data-source-status {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 250, 240, 0.7);
+}
+
+.data-source-status__item {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.data-source-status__item span {
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.data-source-status__item strong {
+  color: var(--blue);
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
 .chart-panel {
   margin-bottom: 20px;
 }
@@ -374,6 +405,10 @@ code {
     min-height: 320px;
   }
 
+  .data-source-status {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .chart-legend__items {
     grid-template-columns: 1fr;
   }
@@ -386,5 +421,9 @@ code {
 
   .kpi-card {
     min-height: 104px;
+  }
+
+  .data-source-status {
+    grid-template-columns: 1fr;
   }
 }

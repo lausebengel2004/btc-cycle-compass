@@ -6,17 +6,43 @@ function getSampleData() {
   return normalizeBtcHistoricalData(btcHistoricalSample)
 }
 
-export function getBtcHistoricalData() {
-  const dataSource = DATA_SOURCES[ACTIVE_DATA_SOURCE]
+function resolveActiveDataSource() {
+  const source = DATA_SOURCES[ACTIVE_DATA_SOURCE]
 
-  if (!dataSource || !dataSource.enabled) {
-    return getSampleData()
+  if (!source || !source.enabled) {
+    return {
+      sourceKey: 'sample',
+      source: DATA_SOURCES.sample,
+    }
   }
 
-  switch (ACTIVE_DATA_SOURCE) {
+  return {
+    sourceKey: ACTIVE_DATA_SOURCE,
+    source,
+  }
+}
+
+export function getBtcHistoricalData() {
+  const { sourceKey } = resolveActiveDataSource()
+
+  switch (sourceKey) {
     case 'sample':
       return getSampleData()
     default:
       return getSampleData()
+  }
+}
+
+export function getBtcDataSourceStatus() {
+  const data = getBtcHistoricalData()
+  const { sourceKey, source } = resolveActiveDataSource()
+
+  return {
+    sourceKey,
+    sourceLabel: source.label,
+    isLive: source.isLive,
+    isValidated: true,
+    dataPointCount: data.length,
+    latestPoint: data.at(-1),
   }
 }
