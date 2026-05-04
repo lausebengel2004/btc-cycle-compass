@@ -18,6 +18,20 @@ export function scaleLinear(value, inputMin, inputMax, outputMin, outputMax) {
   return outputMin + ratio * (outputMax - outputMin)
 }
 
+export function dateToValue(date) {
+  return new Date(`${date}T00:00:00`).getTime()
+}
+
+export function dateToX(date, dateMin, dateMax, bounds) {
+  return scaleLinear(
+    dateToValue(date),
+    dateToValue(dateMin),
+    dateToValue(dateMax),
+    bounds.left,
+    bounds.right,
+  )
+}
+
 export function createSvgPath(points) {
   return points
     .map((point, index) => `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`)
@@ -36,14 +50,16 @@ export function createChartPoints(data, bounds) {
   const sortedData = [...validData].sort((a, b) => a.date.localeCompare(b.date))
   const closes = sortedData.map((item) => item.close)
   const { min, max } = getMinMax(closes)
+  const firstDate = sortedData[0].date
+  const lastDate = sortedData.at(-1).date
   const padding = (max - min || max || 1) * 0.08
   const yMin = min - padding
   const yMax = max + padding
 
-  return sortedData.map((item, index) => ({
+  return sortedData.map((item) => ({
     date: item.date,
     close: item.close,
-    x: scaleLinear(index, 0, sortedData.length - 1, bounds.left, bounds.right),
+    x: dateToX(item.date, firstDate, lastDate, bounds),
     y: scaleLinear(item.close, yMin, yMax, bounds.bottom, bounds.top),
   }))
 }

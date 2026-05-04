@@ -1,5 +1,11 @@
 import { btcHistoricalSample } from '../data/btcHistoricalSample.js'
-import { createChartPoints, createSvgPath, getMinMax } from '../utils/chartUtils.js'
+import { halvingEvents } from '../data/halvingEvents.js'
+import {
+  createChartPoints,
+  createSvgPath,
+  dateToX,
+  getMinMax,
+} from '../utils/chartUtils.js'
 
 const chartBounds = {
   left: 64,
@@ -21,6 +27,12 @@ function formatYear(date) {
   return new Date(`${date}T00:00:00`).getFullYear()
 }
 
+function addDays(date, days) {
+  const nextDate = new Date(`${date}T00:00:00`)
+  nextDate.setDate(nextDate.getDate() + days)
+  return nextDate.toISOString().slice(0, 10)
+}
+
 export function BtcCycleChart() {
   const points = createChartPoints(btcHistoricalSample, chartBounds)
 
@@ -39,6 +51,29 @@ export function BtcCycleChart() {
   const { min, max } = getMinMax(closes)
   const firstPoint = points[0]
   const lastPoint = points.at(-1)
+  const visibleHalvings = halvingEvents
+    .filter(
+      (event) =>
+        event.type === 'halving' &&
+        event.date >= firstPoint.date &&
+        event.date <= lastPoint.date,
+    )
+    .map((event) => ({
+      ...event,
+      x: dateToX(event.date, firstPoint.date, lastPoint.date, chartBounds),
+      zoneStartX: dateToX(
+        addDays(event.date, -45),
+        firstPoint.date,
+        lastPoint.date,
+        chartBounds,
+      ),
+      zoneEndX: dateToX(
+        addDays(event.date, 45),
+        firstPoint.date,
+        lastPoint.date,
+        chartBounds,
+      ),
+    }))
 
   return (
     <section className="chart-panel" aria-label="BTC Verlauf">
@@ -85,6 +120,36 @@ export function BtcCycleChart() {
               />
             )
           })}
+
+          {visibleHalvings.map((event) => (
+            <rect
+              key={`${event.date}-zone`}
+              className="btc-chart__halving-zone"
+              x={event.zoneStartX}
+              y={chartBounds.top}
+              width={event.zoneEndX - event.zoneStartX}
+              height={chartBounds.bottom - chartBounds.top}
+            />
+          ))}
+
+          {visibleHalvings.map((event) => (
+            <g key={event.date} className="btc-chart__halving">
+              <line
+                className="btc-chart__halving-line"
+                x1={event.x}
+                y1={chartBounds.top}
+                x2={event.x}
+                y2={chartBounds.bottom}
+              />
+              <text
+                className="btc-chart__halving-label"
+                x={event.x + 7}
+                y={chartBounds.top + 16}
+              >
+                {event.label}
+              </text>
+            </g>
+          ))}
 
           <path className="btc-chart__line" d={path} />
 

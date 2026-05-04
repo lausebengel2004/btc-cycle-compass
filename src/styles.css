@@ -199,6 +199,22 @@ h1 {
   stroke-width: 1;
 }
 
+.btc-chart__halving-zone {
+  fill: rgba(247, 147, 26, 0.07);
+}
+
+.btc-chart__halving-line {
+  stroke: rgba(157, 77, 5, 0.5);
+  stroke-dasharray: 5 5;
+  stroke-width: 1.5;
+}
+
+.btc-chart__halving-label {
+  fill: var(--accent-dark);
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+}
+
 .btc-chart__line {
   fill: none;
   stroke: var(--accent-dark);
