@@ -3,6 +3,25 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.16.1] - 2026-05-04
+
+### Changed
+
+- Große lokale CSV-Extrakte mit ungeklärter Weiterverteilung werden per
+  `.gitignore` vom öffentlichen Repository ausgeschlossen.
+- README-Hinweis zu lokalen Großdateien, CSV-Import und Lizenzklärung ergänzt.
+- Kleine Beispiel-CSV `examples/btc-example.csv` bleibt versioniert.
+
+## [0.16.0] - 2026-05-04
+
+### Added
+
+- Bereinigte lokale CSV `examples/btc-daily-clean.csv`, abgeleitet aus einer
+  größeren historischen Tabelle.
+- README-Hinweis zum Test der Datei über das bestehende CSV-Import-Panel.
+- Hinweis, dass Datenquelle und Lizenz vor öffentlicher Repository-Nutzung
+  geprüft werden müssen.
+
 ## [0.15.0] - 2026-05-04
 
 ### Added

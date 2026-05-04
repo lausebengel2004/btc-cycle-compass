@@ -141,3 +141,6 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Local data extracts with unresolved redistribution rights
+examples/btc-daily-clean.csv

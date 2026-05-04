@@ -3,8 +3,8 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.15.0 verbessert die Y-Achsen-Beschriftung und zeigt nach CSV-Import
-eine Import-Qualitätszusammenfassung.
+Version 0.16.1 trennt lokal nutzbare größere CSV-Daten von öffentlich
+versionierten Beispieldateien.
 Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -54,6 +54,10 @@ Serverkontakt. CSV-Daten gelten nur für die aktuelle Sitzung. Mit „Zurück zu
 Beispieldaten“ kann wieder auf die Standarddaten gewechselt werden.
 
 Eine Beispiel-Datei liegt unter `examples/btc-example.csv`.
+Größere CSV-Dateien können lokal über das bestehende CSV-Import-Panel getestet
+werden. Fremde Datensätze sollten nur mit geklärter Lizenz oder
+Nutzungsfreigabe in ein öffentliches Repository aufgenommen werden. Der Import
+benötigt weiterhin nur die Spalten `date,close`.
 
 Erwartetes Format:
 
