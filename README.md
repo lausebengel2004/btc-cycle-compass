@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.10.0 schließt die technische MVP-Basis ab. Aktuell nutzt die App
+Version 0.11.0 bereitet einen späteren lokalen CSV-Import vor. Aktuell nutzt die App
 weiterhin lokale Beispieldaten, keine Live-Datenquelle und validiert Daten vor
 der Anzeige.
 
@@ -35,6 +35,13 @@ muss eine positive endliche Zahl sein. Die Validierung normalisiert Datensätze
 aufsteigend nach Datum und verhindert doppelte Datumswerte, damit spätere API-
 oder CSV-Importe dieselbe Struktur liefern. Aktuell bleibt `sample` die aktive
 Datenquelle.
+
+## CSV-Datenvertrag
+
+Ein späterer lokaler CSV-Import erwartet die Spalten `date,close`. Das Datum
+muss im Format `YYYY-MM-DD` vorliegen. `close` muss eine positive Zahl sein;
+Dezimalpunkte sind möglich, Dezimalkommas werden nicht unterstützt. CSV-Daten
+werden lokal verarbeitet. Im MVP bleibt weiterhin keine Live-Datenquelle aktiv.
 
 ## Lokal starten
 

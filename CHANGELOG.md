@@ -3,6 +3,16 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.11.0] - 2026-05-04
+
+### Added
+
+- Lokaler CSV-Parser als Vorbereitung für einen späteren CSV-Import.
+- CSV-Datenvertrag für `date,close` mit anschließender bestehender
+  Datenvalidierung.
+- Weiterhin keine aktive API, keine Netzwerk-Requests und keine neue
+  Dependency.
+
 ## [0.10.0] - 2026-05-04
 
 ### Added
