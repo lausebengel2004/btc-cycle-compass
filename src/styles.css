@@ -345,6 +345,32 @@ h1 {
   line-height: 1.55;
 }
 
+.cycle-interpretation {
+  margin: -4px 0 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.cycle-interpretation h2 {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 1.35rem;
+}
+
+.cycle-interpretation p {
+  max-width: 860px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.cycle-interpretation p:last-child {
+  margin-bottom: 0;
+  color: var(--blue);
+}
+
 .content-section,
 .disclaimer {
   border: 1px solid var(--line);

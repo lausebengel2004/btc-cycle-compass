@@ -3,9 +3,9 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.8.0 zeigt den aktiven Datenquellenstatus. Aktuell nutzt die App
-weiterhin lokale Beispieldaten, keine Live-Datenquelle und validiert Daten vor
-der Anzeige.
+Version 0.9.0 ergänzt eine minimale Interpretationskarte unterhalb des Charts.
+Aktuell nutzt die App weiterhin lokale Beispieldaten, keine Live-Datenquelle und
+validiert Daten vor der Anzeige.
 
 ## Data Source Architecture
 
