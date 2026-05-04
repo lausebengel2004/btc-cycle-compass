@@ -87,7 +87,7 @@ h1 {
 
 .kpi-section {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 20px;
 }
@@ -112,9 +112,19 @@ h1 {
 }
 
 .kpi-card strong {
+  display: block;
   color: var(--ink);
   font-size: 2.15rem;
   line-height: 1;
+}
+
+.kpi-card small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.76rem;
+  line-height: 1.25;
 }
 
 .data-source-status {
@@ -387,6 +397,10 @@ h1 {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 4;
+}
+
+.btc-chart__line--dense {
+  stroke-width: 2.25;
 }
 
 .btc-chart__point {

@@ -3,6 +3,27 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.18.0] - 2026-05-04
+
+### Added
+
+- ATH-/Cycle-Max-KPI mit Datum des ersten ATH-Vorkommens.
+- KPI für Drawdown vom ATH.
+- KPI für den prozentualen Weg zurück zum ATH.
+
+### Changed
+
+- KPI-Grid für acht Karten dezent auf Desktop angepasst.
+
+## [0.17.0] - 2026-05-04
+
+### Changed
+
+- Punktmarker werden bei großen Datensätzen automatisch ausgeblendet.
+- Kurslinie wird bei dichten CSV-Datensätzen dünner gerendert.
+- Logarithmische Y-Achse vermeidet fachlich falsche `$0`-Labels.
+- Skalenhinweis für lange BTC-Historien leicht präzisiert.
+
 ## [0.16.1] - 2026-05-04
 
 ### Changed

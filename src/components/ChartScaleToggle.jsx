@@ -19,7 +19,10 @@ export function ChartScaleToggle({ value, onChange }) {
           </button>
         ))}
       </div>
-      <p>Log-Skala zeigt prozentuale Veränderungen über große Preisbereiche besser.</p>
+      <p>
+        Log-Skala zeigt prozentuale Veränderungen über große Preisbereiche
+        besser; bei langen BTC-Historien ist sie oft lesbarer.
+      </p>
     </section>
   )
 }

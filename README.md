@@ -3,8 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.16.1 trennt lokal nutzbare größere CSV-Daten von öffentlich
-versionierten Beispieldateien.
+Version 0.18.0 erweitert den KPI-Bereich um ATH- und Drawdown-Kennzahlen.
 Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -22,6 +21,14 @@ Live-Datenquelle und validiert Daten vor der Anzeige.
 Aktuell nutzt die App lokale Beispieldaten. Die aktive Datenquelle ist zentral
 über `src/config/dataSource.js` vorbereitet. Eine echte API- oder CSV-Anbindung
 ist für spätere Versionen vorgesehen.
+
+## KPI-Kennzahlen
+
+Der KPI-Bereich enthält neben Zyklus- und CAGR-Werten auch ATH-/Drawdown-Werte.
+`ATH / Cycle Max` ist der höchste Schlusskurs im aktiven Datensatz. `Drawdown
+vom ATH` zeigt den prozentualen Abstand vom ATH aus gesehen. `Weg zurück zum
+ATH` zeigt den notwendigen prozentualen Anstieg vom aktuellen Wert zurück zum
+ATH.
 
 ## Datenvertrag
 
@@ -101,7 +108,9 @@ Der Chart startet standardmäßig mit linearer Skala. Die lineare Skala zeigt
 absolute Preisbewegungen. Optional kann auf logarithmische Skala gewechselt
 werden; sie macht prozentuale Preisbewegungen über große Preisbereiche besser
 vergleichbar. Die Y-Achse zeigt mehrere aus dem aktuellen Datenbereich
-berechnete Preisstufen.
+berechnete Preisstufen. Bei großen CSV-Dateien reduziert der Chart automatisch
+Punktmarker und zeigt eine ruhigere Linie. In der Log-Skala werden ungültige
+Nullwerte auf der Y-Achse vermieden.
 
 ## Lokal starten
 

@@ -13,6 +13,12 @@ function formatPercent(value) {
   }).format(value)
 }
 
+function formatSignedPercent(value) {
+  const prefix = value > 0 ? '+' : ''
+
+  return `${prefix}${value.toFixed(1)}%`
+}
+
 function calculateCagr(currentValue, previousValue, years) {
   if (!currentValue || !previousValue || years <= 0) {
     return null
@@ -33,9 +39,23 @@ function average(values) {
 
 export function createKpisFromHistoricalData(data) {
   const sortedData = [...data].sort((a, b) => a.date.localeCompare(b.date))
+
+  if (sortedData.length === 0) {
+    throw new Error('Cannot create KPIs from an empty BTC data set.')
+  }
+
   const latest = sortedData.at(-1)
   const fourYearsAgo = sortedData.at(-5)
   const closes = sortedData.map((item) => item.close)
+  const athPoint = sortedData.reduce(
+    (currentAth, item) => (item.close > currentAth.close ? item : currentAth),
+    sortedData[0],
+  )
+  const currentClose = latest.close
+  const athClose = athPoint.close
+  const drawdownFromAthPercent = ((currentClose - athClose) / athClose) * 100
+  const gainToAthPercent = ((athClose - currentClose) / currentClose) * 100
+  const isAtAth = currentClose === athClose
 
   const fourYearCagr = calculateCagr(latest?.close, fourYearsAgo?.close, 4)
   const fourYearCagrs = sortedData
@@ -64,6 +84,18 @@ export function createKpisFromHistoricalData(data) {
         oneYearAverageCagr === null ? '-' : formatPercent(oneYearAverageCagr),
     },
     { label: 'Cycle Min', value: formatCurrency(Math.min(...closes)) },
-    { label: 'Cycle Max', value: formatCurrency(Math.max(...closes)) },
+    {
+      label: 'ATH / Cycle Max',
+      value: formatCurrency(athClose),
+      detail: isAtAth ? `am ATH seit ${athPoint.date}` : `am ${athPoint.date}`,
+    },
+    {
+      label: 'Drawdown vom ATH',
+      value: formatSignedPercent(drawdownFromAthPercent),
+    },
+    {
+      label: 'Weg zurück zum ATH',
+      value: isAtAth ? '0.0%' : formatSignedPercent(gainToAthPercent),
+    },
   ]
 }

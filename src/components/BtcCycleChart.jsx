@@ -13,7 +13,13 @@ const chartBounds = {
   bottom: 276,
 }
 
+const markerVisibilityLimit = 120
+
 function formatCompactUsd(value) {
+  if (value < 1) {
+    return `$${value.toFixed(1)}`
+  }
+
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -48,6 +54,10 @@ export function BtcCycleChart({ data, scaleMode = 'linear' }) {
 
   const path = createSvgPath(points)
   const yAxisTicks = createYAxisTicks(points, chartBounds, scaleMode)
+  const showPointMarkers = points.length <= markerVisibilityLimit
+  const lineClassName = showPointMarkers
+    ? 'btc-chart__line'
+    : 'btc-chart__line btc-chart__line--dense'
   const firstPoint = points[0]
   const lastPoint = points.at(-1)
   const visibleHalvings = halvingEvents
@@ -152,17 +162,19 @@ export function BtcCycleChart({ data, scaleMode = 'linear' }) {
             </g>
           ))}
 
-          <path className="btc-chart__line" d={path} />
+          <path className={lineClassName} d={path} />
 
-          {points.map((point) => (
-            <circle
-              key={point.date}
-              className="btc-chart__point"
-              cx={point.x}
-              cy={point.y}
-              r="4"
-            />
-          ))}
+          {showPointMarkers
+            ? points.map((point) => (
+                <circle
+                  key={point.date}
+                  className="btc-chart__point"
+                  cx={point.x}
+                  cy={point.y}
+                  r="4"
+                />
+              ))
+            : null}
 
           <text
             className="btc-chart__label"

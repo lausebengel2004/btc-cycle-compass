@@ -74,12 +74,14 @@ export function createYAxisTicks(data, bounds, scaleMode = 'linear', count = 5) 
   const { min, max } = getMinMax(closes)
   const { yMin, yMax } = getYScaleDomain(closes, scaleMode)
   const tickCount = Math.max(2, count)
+  const logMin = scaleMode === 'log' ? Math.log10(min) : null
+  const logMax = scaleMode === 'log' ? Math.log10(max) : null
 
   return Array.from({ length: tickCount }, (_, index) => {
     const ratio = index / (tickCount - 1)
     const value =
       scaleMode === 'log'
-        ? 10 ** scaleLinear(ratio, 0, 1, Math.log10(min), Math.log10(max))
+        ? 10 ** scaleLinear(ratio, 0, 1, logMin, logMax)
         : scaleLinear(ratio, 0, 1, min, max)
     const y = scaleLinear(
       getYScaleValue(value, scaleMode),
@@ -90,7 +92,7 @@ export function createYAxisTicks(data, bounds, scaleMode = 'linear', count = 5) 
     )
 
     return { value, y }
-  })
+  }).filter((tick) => scaleMode !== 'log' || tick.value > 0)
 }
 
 export function createChartPoints(data, bounds, scaleMode = 'linear') {
