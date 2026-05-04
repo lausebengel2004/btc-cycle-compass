@@ -3,9 +3,9 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.13.0 ergänzt eine Beispiel-CSV und eine klarere Anleitung für den
-lokalen CSV-Import. Aktuell startet die App weiterhin mit lokalen
-Beispieldaten, nutzt keine Live-Datenquelle und validiert Daten vor der Anzeige.
+Version 0.14.0 ergänzt eine optionale lineare/logarithmische Chart-Skalierung.
+Aktuell startet die App weiterhin mit lokalen Beispieldaten, nutzt keine
+Live-Datenquelle und validiert Daten vor der Anzeige.
 
 ## Aktueller MVP-Status
 
@@ -81,6 +81,13 @@ Regeln:
 - Negativer oder leerer Close-Wert
 - Doppelte Datumswerte
 - Falsches Datumsformat, z. B. `01.01.2020`
+
+## Chart-Skalierung
+
+Der Chart startet standardmäßig mit linearer Skala. Die lineare Skala zeigt
+absolute Preisbewegungen. Optional kann auf logarithmische Skala gewechselt
+werden; sie macht prozentuale Preisbewegungen über große Preisbereiche besser
+vergleichbar.
 
 ## Lokal starten
 

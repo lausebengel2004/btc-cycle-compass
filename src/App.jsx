@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { BtcCycleChart } from './components/BtcCycleChart.jsx'
 import { ChartLegend } from './components/ChartLegend.jsx'
+import { ChartScaleToggle } from './components/ChartScaleToggle.jsx'
 import { CycleInterpretation } from './components/CycleInterpretation.jsx'
 import { CsvImportPanel } from './components/CsvImportPanel.jsx'
 import { DataSourceStatus } from './components/DataSourceStatus.jsx'
@@ -20,6 +21,7 @@ export default function App() {
   const [dataSourceStatus, setDataSourceStatus] = useState(() =>
     getBtcDataSourceStatus(),
   )
+  const [chartScale, setChartScale] = useState('linear')
   const kpis = useMemo(() => createKpis(activeBtcData), [activeBtcData])
 
   function handleCsvDataLoaded(data) {
@@ -49,7 +51,8 @@ export default function App() {
         onDataLoaded={handleCsvDataLoaded}
         onReset={handleResetToSample}
       />
-      <BtcCycleChart data={activeBtcData} />
+      <ChartScaleToggle value={chartScale} onChange={setChartScale} />
+      <BtcCycleChart data={activeBtcData} scaleMode={chartScale} />
       <CycleInterpretation />
       <ChartLegend />
       <Methodology />

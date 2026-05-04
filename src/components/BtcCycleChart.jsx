@@ -32,8 +32,9 @@ function addDays(date, days) {
   return nextDate.toISOString().slice(0, 10)
 }
 
-export function BtcCycleChart({ data }) {
-  const points = createChartPoints(data, chartBounds)
+export function BtcCycleChart({ data, scaleMode = 'linear' }) {
+  const points = createChartPoints(data, chartBounds, scaleMode)
+  const scaleLabel = scaleMode === 'log' ? 'logarithmisch' : 'linear'
 
   if (points.length === 0) {
     return (
@@ -88,6 +89,9 @@ export function BtcCycleChart({ data }) {
             Linienchart mit lokalen Bitcoin-Schlusskursen von{' '}
             {formatYear(firstPoint.date)} bis {formatYear(lastPoint.date)}.
           </desc>
+          <text className="btc-chart__scale-label" x="560" y="24">
+            Skala: {scaleLabel}
+          </text>
 
           <line
             className="btc-chart__axis"

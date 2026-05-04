@@ -3,6 +3,14 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.14.0] - 2026-05-04
+
+### Added
+
+- Optionale lineare/logarithmische Y-Skalierung für den BTC-Chart.
+- Dezenter Scale-Toggle in der Nähe des Charts.
+- Weiterhin keine API, keine Netzwerk-Requests und keine neue Dependency.
+
 ## [0.13.0] - 2026-05-04
 
 ### Added

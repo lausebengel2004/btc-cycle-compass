@@ -224,6 +224,53 @@ h1 {
   color: var(--accent-dark);
 }
 
+.chart-scale-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 20px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 250, 240, 0.68);
+}
+
+.chart-scale-toggle__control {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid rgba(36, 77, 92, 0.28);
+  border-radius: 4px;
+}
+
+.chart-scale-toggle button {
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 0;
+  border-right: 1px solid rgba(36, 77, 92, 0.2);
+  background: rgba(246, 243, 237, 0.72);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.chart-scale-toggle button:last-child {
+  border-right: 0;
+}
+
+.chart-scale-toggle button.is-active {
+  background: rgba(247, 147, 26, 0.12);
+  color: var(--accent-dark);
+}
+
+.chart-scale-toggle p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 .chart-panel {
   margin-bottom: 20px;
 }
@@ -340,6 +387,13 @@ h1 {
   fill: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
   font-size: 0.8rem;
+}
+
+.btc-chart__scale-label {
+  fill: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.72rem;
+  text-anchor: end;
 }
 
 .chart-legend {

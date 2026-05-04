@@ -38,7 +38,23 @@ export function createSvgPath(points) {
     .join(' ')
 }
 
-export function createChartPoints(data, bounds) {
+function getYScaleValue(value, scaleMode) {
+  if (scaleMode === 'log') {
+    if (value <= 0) {
+      throw new Error('Logarithmic chart scale requires positive close values.')
+    }
+
+    return Math.log10(value)
+  }
+
+  return value
+}
+
+export function createChartPoints(data, bounds, scaleMode = 'linear') {
+  if (!['linear', 'log'].includes(scaleMode)) {
+    throw new Error(`Unsupported chart scale mode: ${scaleMode}.`)
+  }
+
   const validData = data.filter(
     (item) => item.date && Number.isFinite(item.close),
   )
@@ -49,17 +65,25 @@ export function createChartPoints(data, bounds) {
 
   const sortedData = [...validData].sort((a, b) => a.date.localeCompare(b.date))
   const closes = sortedData.map((item) => item.close)
+  const scaledCloses = closes.map((close) => getYScaleValue(close, scaleMode))
   const { min, max } = getMinMax(closes)
+  const { min: scaledMin, max: scaledMax } = getMinMax(scaledCloses)
   const firstDate = sortedData[0].date
   const lastDate = sortedData.at(-1).date
-  const padding = (max - min || max || 1) * 0.08
-  const yMin = min - padding
-  const yMax = max + padding
+  const padding = (scaledMax - scaledMin || scaledMax || 1) * 0.08
+  const yMin = scaledMin - padding
+  const yMax = scaledMax + padding
 
   return sortedData.map((item) => ({
     date: item.date,
     close: item.close,
     x: dateToX(item.date, firstDate, lastDate, bounds),
-    y: scaleLinear(item.close, yMin, yMax, bounds.bottom, bounds.top),
+    y: scaleLinear(
+      getYScaleValue(item.close, scaleMode),
+      yMin,
+      yMax,
+      bounds.bottom,
+      bounds.top,
+    ),
   }))
 }
