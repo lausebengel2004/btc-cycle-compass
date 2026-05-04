@@ -3,8 +3,14 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Version 0.5.0 ergänzt eine Chart-Legende und einen Datenhinweis. Aktuell nutzt
-die App lokale Beispieldaten und keine Live-Marktdaten.
+Version 0.6.0 bereitet die Datenquellen technisch zentral vor. Aktuell nutzt
+die App weiterhin lokale Beispieldaten und keine Live-Marktdaten.
+
+## Data Source Architecture
+
+Aktuell nutzt die App lokale Beispieldaten. Die aktive Datenquelle ist zentral
+über `src/config/dataSource.js` vorbereitet. Eine echte API- oder CSV-Anbindung
+ist für spätere Versionen vorgesehen.
 
 ## Lokal starten
 

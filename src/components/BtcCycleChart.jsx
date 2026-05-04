@@ -1,5 +1,5 @@
-import { btcHistoricalSample } from '../data/btcHistoricalSample.js'
 import { halvingEvents } from '../data/halvingEvents.js'
+import { getBtcHistoricalData } from '../services/btcDataService.js'
 import {
   createChartPoints,
   createSvgPath,
@@ -34,7 +34,7 @@ function addDays(date, days) {
 }
 
 export function BtcCycleChart() {
-  const points = createChartPoints(btcHistoricalSample, chartBounds)
+  const points = createChartPoints(getBtcHistoricalData(), chartBounds)
 
   if (points.length === 0) {
     return (
