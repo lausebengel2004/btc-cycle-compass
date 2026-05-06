@@ -1,5 +1,5 @@
 const legendItems = [
-  { label: 'Kurslinie', description: 'historische BTC-Beispieldaten', marker: 'line' },
+  { label: 'Kurslinie', description: 'aktuell geladene lokale BTC-Daten', marker: 'line' },
   { label: 'Punkte', description: 'einzelne Jahreswerte der lokalen Datenreihe', marker: 'point' },
   { label: 'Vertikale Linien', description: 'Bitcoin-Halving-Ereignisse', marker: 'halving' },
   {
@@ -26,7 +26,7 @@ export function ChartLegend() {
         ))}
       </div>
       <p className="chart-legend__note">
-        Aktuell verwendet diese Ansicht lokale Beispieldaten. Die Darstellung
+        Aktuell verwendet diese Ansicht lokal geladene Daten. Die Darstellung
         dient der methodischen Visualisierung des Bitcoin-4-Jahres-Zyklus und
         ist keine Live-Kursquelle.
       </p>

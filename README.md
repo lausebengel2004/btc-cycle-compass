@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Aktueller Stand: Version 0.23.0. Die App startet mit lokalen Beispieldaten,
+Aktueller Stand: Version 0.23.1. Die App startet mit lokalen Beispieldaten,
 unterstützt temporären lokalen CSV-Import im Browser, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 

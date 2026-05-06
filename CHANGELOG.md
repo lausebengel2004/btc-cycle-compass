@@ -3,6 +3,16 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.23.1] - 2026-05-06
+
+### Changed
+
+- Interpretationskarte und Chart-Legende verwenden neutrale Formulierungen zu
+  aktuell geladenen lokalen Daten statt pauschal von Beispieldaten zu sprechen.
+- Datenquellenstatus und CSV-Importverhalten bleiben unverändert.
+- Keine Berechnungslogik, keine API, keine Netzwerk-Requests und keine neue
+  Dependency geändert.
+
 ## [0.23.0] - 2026-05-06
 
 ### Added
