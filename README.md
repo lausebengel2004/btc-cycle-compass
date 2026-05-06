@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Aktueller Stand: Version 0.20.0. Die App startet mit lokalen Beispieldaten,
+Aktueller Stand: Version 0.21.0. Die App startet mit lokalen Beispieldaten,
 unterstützt temporären lokalen CSV-Import im Browser, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -63,6 +63,35 @@ Format `YYYY-MM-DD` vorliegen. `close` muss eine positive Zahl sein;
 Dezimalpunkte sind möglich, Dezimalkommas werden nicht unterstützt. CSV-Daten
 werden nur lokal im Browser verarbeitet, nicht hochgeladen und nicht
 gespeichert. Es gibt weiterhin keine API und keine Live-Datenquelle.
+
+## Optionale historische BTC-Daten
+
+Für längere historische Analysen können Nutzer externe BTC-Datensätze selbst
+exportieren und lokal importieren. Eine mögliche externe Quelle ist
+CoinCheckup Bitcoin Historical Data. BTC Cycle Compass verteilt keine
+vollständigen externen Fremd-CSV-Dateien im öffentlichen Repository.
+
+Der Import benötigt weiterhin nur dieses Format:
+
+```csv
+date,close
+2013-04-28,134.21
+2013-04-29,144.54
+```
+
+Dabei gilt:
+
+- Nutzer exportieren externe CSV-Dateien selbst beim jeweiligen Anbieter
+- Benötigte Spalten für BTC Cycle Compass: `date,close`
+- `date` im Format `YYYY-MM-DD`
+- `close` als positive Zahl mit Dezimalpunkt
+- CSV-Dateien werden lokal im Browser verarbeitet
+- Kein Upload
+- Keine Speicherung
+- Kein Serverkontakt
+- Externe Datenquellen unterliegen den Nutzungsbedingungen des jeweiligen
+  Anbieters
+- Vollständige externe Datensätze werden nicht im öffentlichen Repo verteilt
 
 ## Lokaler CSV-Import
 
@@ -154,9 +183,8 @@ vorbereitet.
 
 ## Nächste mögliche Ausbaustufen
 
-- Lizenz-/Quellenklärung für große BTC-CSV-Dateien
-- Bessere CSV-Datenprüfung und Import-Hilfen
+- CSV-Import-Komfort und Datenquellen-Dokumentation
 - Zyklusvergleich nach Halving
 - Export/Share-Snapshot
-- Echte historische BTC-Tagesdaten aus geklärter Quelle
+- Weitere Hinweise zu extern exportierten historischen BTC-Tagesdaten
 - Optional spätere API-Anbindung

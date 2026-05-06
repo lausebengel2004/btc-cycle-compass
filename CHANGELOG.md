@@ -3,6 +3,20 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.21.0] - 2026-05-06
+
+### Changed
+
+- README um optionale historische BTC-Daten und lokale Importnutzung ergänzt.
+- CoinCheckup Bitcoin Historical Data als mögliche externe Quelle für
+  selbst exportierte CSV-Dateien dokumentiert.
+- Importformat `date,close` sowie lokale Verarbeitung ohne Upload,
+  Speicherung oder Serverkontakt klargestellt.
+- Roadmap auf geklärte lokale Nutzung externer CSV-Quellen ohne
+  Veröffentlichung vollständiger Fremd-CSV-Dateien aktualisiert.
+- Keine App-Logik, keine API, keine Netzwerk-Requests und keine neue
+  Dependency geändert.
+
 ## [0.20.0] - 2026-05-04
 
 ### Changed

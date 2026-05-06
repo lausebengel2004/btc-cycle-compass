@@ -8,9 +8,10 @@ keine Anlageberatung.
 
 ## Aktueller Stand
 
-Version `0.20.0` ist ein Konsolidierungsrelease. Es wurden keine neuen
-Funktionen ergänzt, sondern README, Roadmap, Changelog und Meta-Kontext auf den
-aktuellen Projektstand gebracht.
+Version `0.21.0` ist ein Quellen- und Import-Dokumentationsrelease. Es wurden
+keine neuen Funktionen ergänzt, sondern die lokale Nutzung externer
+historischer BTC-CSV-Dateien und die Nicht-Veröffentlichung vollständiger
+Fremd-CSV-Dateien klar dokumentiert.
 
 Die App ist aktuell:
 
@@ -33,11 +34,14 @@ Die App ist aktuell:
 - ATH-/Drawdown-KPIs im bestehenden KPI-Bereich
 - Zentrale Preisformatierung für kleine historische BTC-Werte
 - Lizenzhygiene für große lokale CSV-Dateien
+- Lizenz-/Quellenklärung für externe historische BTC-CSV-Dateien: geklärt
+  für lokale Nutzung durch Nutzerexport, keine Veröffentlichung vollständiger
+  Fremd-CSV-Dateien im öffentlichen Repository
 
 ## Kurzfristig sinnvoll
 
-- Lizenz- und Quellenklärung für große historische BTC-CSV-Dateien
-- Bessere CSV-Datenprüfung und verständlichere Import-Hilfen
+- CSV-Import-Komfort für extern exportierte `date,close`-Dateien
+- Datenquellen-Dokumentation für externe historische BTC-CSV-Exporte
 - Kurze methodische Hinweise zu ATH, Drawdown und Zyklusvergleich
 - Optional: Export- oder Notizfunktion für lokale Analyse-Snapshots
 
@@ -56,4 +60,4 @@ Die App ist aktuell:
 - Kauf- oder Verkaufssignale
 - Preisprognosen
 - Speicherung importierter CSV-Dateien
-- fremde große Datensätze im öffentlichen Repository ohne Lizenzklärung
+- vollständige fremde CSV-Datensätze im öffentlichen Repository
