@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Aktueller Stand: Version 0.21.0. Die App startet mit lokalen Beispieldaten,
+Aktueller Stand: Version 0.22.0. Die App startet mit lokalen Beispieldaten,
 unterstützt temporären lokalen CSV-Import im Browser, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -58,10 +58,12 @@ Datenquelle.
 
 ## CSV-Datenvertrag
 
-Der lokale CSV-Import erwartet die Spalten `date,close`. Das Datum muss im
-Format `YYYY-MM-DD` vorliegen. `close` muss eine positive Zahl sein;
-Dezimalpunkte sind möglich, Dezimalkommas werden nicht unterstützt. CSV-Daten
-werden nur lokal im Browser verarbeitet, nicht hochgeladen und nicht
+Der lokale CSV-Import benötigt mindestens die Spalten `date` und `close`.
+Groß-/Kleinschreibung, Leerzeichen um Headernamen und die Spaltenreihenfolge
+sind egal. Zusätzliche Spalten dürfen vorhanden sein und werden ignoriert.
+Das Datum muss im Format `YYYY-MM-DD` vorliegen. `close` muss eine positive
+Zahl sein; Dezimalpunkte sind möglich, Dezimalkommas werden nicht unterstützt.
+CSV-Daten werden nur lokal im Browser verarbeitet, nicht hochgeladen und nicht
 gespeichert. Es gibt weiterhin keine API und keine Live-Datenquelle.
 
 ## Optionale historische BTC-Daten
@@ -82,7 +84,9 @@ date,close
 Dabei gilt:
 
 - Nutzer exportieren externe CSV-Dateien selbst beim jeweiligen Anbieter
-- Benötigte Spalten für BTC Cycle Compass: `date,close`
+- Benötigte Spalten für BTC Cycle Compass: `date` und `close`
+- Header dürfen z. B. `date,close`, `Date,Close` oder `Close,Date` lauten
+- Zusätzliche Spalten werden ignoriert
 - `date` im Format `YYYY-MM-DD`
 - `close` als positive Zahl mit Dezimalpunkt
 - CSV-Dateien werden lokal im Browser verarbeitet
@@ -117,31 +121,41 @@ date,close
 
 Regeln:
 
-- Header muss exakt `date,close` lauten
+- Header muss die Spalten `date` und `close` eindeutig enthalten
+- Groß-/Kleinschreibung, Leerzeichen und Spaltenreihenfolge sind egal
+- Zusätzliche Spalten werden ignoriert
 - Datum im Format `YYYY-MM-DD`
 - `close` als positive Zahl
 - Dezimalpunkt erlaubt
 - Dezimalkomma nicht unterstützt
 - Leere Zeilen werden ignoriert
-- Doppelte Datumswerte sind nicht erlaubt
+- Exakte doppelte Datumszeilen werden entfernt; der erste gültige Eintrag
+  bleibt erhalten
+- Doppelte Datumswerte mit unterschiedlichen Schlusskursen erzeugen einen
+  Datenkonflikt und brechen den Import ab
 - Ungültige Daten erzeugen eine Fehlermeldung
 
 ## Häufige CSV-Fehler
 
-- Falscher Header, z. B. `Date,Close`
+- Fehlende Pflichtspalte, z. B. `Date,Price`
+- Mehrfach vorhandene Pflichtspalte, z. B. `date,date,close` oder
+  `date,close,close`
 - Deutsches Dezimalkomma, z. B. `7200,50`
 - Fehlendes Datum
 - Negativer oder leerer Close-Wert
-- Doppelte Datumswerte
 - Falsches Datumsformat, z. B. `01.01.2020`
 
 ## Was beim CSV-Import geprüft wird
 
-Beim lokalen CSV-Import prüft die App den exakten Header `date,close`, gültige
-Datumswerte im Format `YYYY-MM-DD`, positive endliche Schlusskurse, leere oder
-fehlende Werte und doppelte Datumswerte. Nach erfolgreichem Import zeigt die App
-eine kurze Zusammenfassung mit Datenquelle, Validierungsstatus, Datenpunktzahl,
-Zeitraum und letztem Wert.
+Beim lokalen CSV-Import erkennt die App die Pflichtspalten `date` und `close`
+tolerant, prüft gültige Datumswerte im Format `YYYY-MM-DD`, positive endliche
+Schlusskurse, leere oder fehlende Werte und doppelte Datumswerte. Exakte
+Duplikate werden entfernt; bei demselben Datum mit unterschiedlichen
+Schlusskursen bricht der Import mit einem Datenkonflikt ab. Die finalen Daten
+werden aufsteigend nach Datum sortiert. Nach erfolgreichem Import zeigt die App
+Dateiname, gelesene Datenzeilen, importierte Datenpunkte, ignorierte Leerzeilen,
+entfernte Duplikate, Sortierhinweis, Zeitraum, letzten Schlusskurs, erkannte
+Spaltenzuordnung und eine kleine Datenvorschau.
 
 ## Chart-Skalierung
 
@@ -183,7 +197,7 @@ vorbereitet.
 
 ## Nächste mögliche Ausbaustufen
 
-- CSV-Import-Komfort und Datenquellen-Dokumentation
+- Weitere Datenquellen-Dokumentation
 - Zyklusvergleich nach Halving
 - Export/Share-Snapshot
 - Weitere Hinweise zu extern exportierten historischen BTC-Tagesdaten

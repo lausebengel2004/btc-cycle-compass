@@ -3,6 +3,34 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.22.0] - 2026-05-06
+
+### Added
+
+- Tolerante CSV-Header-Erkennung für `date` und `close` unabhängig von
+  Groß-/Kleinschreibung, Leerzeichen und Spaltenreihenfolge.
+- Unterstützung für zusätzliche CSV-Spalten, die beim lokalen Import ignoriert
+  werden.
+- Fehler bei mehrfach vorhandenen Pflichtspalten wie `date,date,close` oder
+  `date,close,close`.
+- Import-Zusammenfassung mit Dateiname, gelesenen Datenzeilen, importierten
+  Datenpunkten, ignorierten Leerzeilen, entfernten Duplikaten, Sortierhinweis,
+  Zeitraum, letztem Schlusskurs und erkannter Spaltenzuordnung.
+- Kleine lokale Datenvorschau nach erfolgreichem CSV-Import.
+- Parser-Regressionstest ohne neue Dependency.
+
+### Changed
+
+- Exakte doppelte Datumszeilen führen beim CSV-Import nicht mehr zum Abbruch;
+  der erste gültige Eintrag bleibt erhalten, weitere identische Einträge werden
+  entfernt.
+- Doppelte Datumswerte mit unterschiedlichen Schlusskursen brechen den Import
+  als Datenkonflikt ab.
+- Final importierte CSV-Daten werden weiterhin chronologisch sortiert; falls
+  Sortierung nötig war, zeigt die UI einen Hinweis.
+- README und Roadmap auf den verbesserten CSV-Importstand aktualisiert.
+- Version auf `0.22.0` erhöht.
+
 ## [0.21.0] - 2026-05-06
 
 ### Changed

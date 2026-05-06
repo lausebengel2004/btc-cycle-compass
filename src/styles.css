@@ -246,6 +246,34 @@ h1 {
   line-height: 1.35;
 }
 
+.csv-import-panel__preview {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.csv-import-panel__preview strong {
+  color: var(--ink);
+}
+
+.csv-import-panel__preview table {
+  width: min(460px, 100%);
+  border-collapse: collapse;
+}
+
+.csv-import-panel__preview th,
+.csv-import-panel__preview td {
+  padding: 6px 8px;
+  border: 1px solid rgba(36, 77, 92, 0.18);
+  text-align: left;
+}
+
+.csv-import-panel__preview th {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .chart-scale-toggle {
   display: flex;
   flex-wrap: wrap;

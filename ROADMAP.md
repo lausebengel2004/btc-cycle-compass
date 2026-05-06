@@ -8,10 +8,10 @@ keine Anlageberatung.
 
 ## Aktueller Stand
 
-Version `0.21.0` ist ein Quellen- und Import-Dokumentationsrelease. Es wurden
-keine neuen Funktionen ergänzt, sondern die lokale Nutzung externer
-historischer BTC-CSV-Dateien und die Nicht-Veröffentlichung vollständiger
-Fremd-CSV-Dateien klar dokumentiert.
+Version `0.22.0` verbessert die lokale CSV-Datenprüfung. Der Import erkennt
+Header toleranter, ignoriert Zusatzspalten, entfernt doppelte Datumswerte
+kontrolliert, sortiert final chronologisch und zeigt eine ausführlichere
+Import-Zusammenfassung mit kleiner Datenvorschau.
 
 Die App ist aktuell:
 
@@ -37,10 +37,11 @@ Die App ist aktuell:
 - Lizenz-/Quellenklärung für externe historische BTC-CSV-Dateien: geklärt
   für lokale Nutzung durch Nutzerexport, keine Veröffentlichung vollständiger
   Fremd-CSV-Dateien im öffentlichen Repository
+- Verbesserte CSV-Datenprüfung mit flexibler Header-Erkennung,
+  Duplikatbereinigung, Sortierhinweis, Import-Metadaten und Datenvorschau
 
 ## Kurzfristig sinnvoll
 
-- CSV-Import-Komfort für extern exportierte `date,close`-Dateien
 - Datenquellen-Dokumentation für externe historische BTC-CSV-Exporte
 - Kurze methodische Hinweise zu ATH, Drawdown und Zyklusvergleich
 - Optional: Export- oder Notizfunktion für lokale Analyse-Snapshots
