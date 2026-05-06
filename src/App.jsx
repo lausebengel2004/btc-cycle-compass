@@ -9,6 +9,7 @@ import { Disclaimer } from './components/Disclaimer.jsx'
 import { Header } from './components/Header.jsx'
 import { KpiGrid } from './components/KpiGrid.jsx'
 import { Methodology } from './components/Methodology.jsx'
+import { MethodologyNotes } from './components/MethodologyNotes.jsx'
 import { createKpis } from './data/kpis.js'
 import {
   createBtcDataSourceStatus,
@@ -54,6 +55,7 @@ export default function App() {
       <ChartScaleToggle value={chartScale} onChange={setChartScale} />
       <BtcCycleChart data={activeBtcData} scaleMode={chartScale} />
       <CycleInterpretation />
+      <MethodologyNotes />
       <ChartLegend />
       <Methodology />
       <Disclaimer />

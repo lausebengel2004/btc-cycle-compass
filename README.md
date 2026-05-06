@@ -3,7 +3,7 @@
 Eine schlanke, statische React/Vite-Web-App für ein öffentlich teilbares
 Bitcoin-4-Jahres-Zyklus-Dashboard.
 
-Aktueller Stand: Version 0.22.0. Die App startet mit lokalen Beispieldaten,
+Aktueller Stand: Version 0.23.0. Die App startet mit lokalen Beispieldaten,
 unterstützt temporären lokalen CSV-Import im Browser, nutzt keine
 Live-Datenquelle und validiert Daten vor der Anzeige.
 
@@ -37,6 +37,11 @@ Der KPI-Bereich enthält neben Zyklus- und CAGR-Werten auch ATH-/Drawdown-Werte.
 vom ATH` zeigt den prozentualen Abstand vom ATH aus gesehen. `Weg zurück zum
 ATH` zeigt den notwendigen prozentualen Anstieg vom aktuellen Wert zurück zum
 ATH.
+
+Zusätzliche Methodik-Hinweise in der App erklären, wie ATH, Drawdown, Weg
+zurück zum ATH und Zyklusvergleich sachlich gelesen werden. Alle Aussagen
+hängen vom aktuell geladenen Datensatz ab. Die Hinweise sind keine Prognose,
+keine Anlageberatung und kein Kauf- oder Verkaufssignal.
 
 Kleine historische BTC-Preise werden in der Anzeige mit ausreichend
 Nachkommastellen formatiert, damit positive Werte nicht als `$0` erscheinen.
@@ -190,6 +195,7 @@ vorbereitet.
 - Keine automatische Aktualisierung
 - Keine Live-Daten und keine API
 - Keine Speicherung importierter CSV-Dateien
+- Methodik-Hinweise erklären nur die Lesart bestehender Kennzahlen
 - Große lokale CSV-Dateien bleiben aus Lizenzgründen ungetrackt
 - Keine Prognosefunktion
 - Keine Berücksichtigung von On-Chain-Daten, Makrodaten oder Liquiditätsdaten

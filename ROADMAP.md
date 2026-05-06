@@ -8,10 +8,9 @@ keine Anlageberatung.
 
 ## Aktueller Stand
 
-Version `0.22.0` verbessert die lokale CSV-Datenprüfung. Der Import erkennt
-Header toleranter, ignoriert Zusatzspalten, entfernt doppelte Datumswerte
-kontrolliert, sortiert final chronologisch und zeigt eine ausführlichere
-Import-Zusammenfassung mit kleiner Datenvorschau.
+Version `0.23.0` ist ein kleines Methodik-Release. Es ergänzt erklärende
+Hinweise zu ATH, Drawdown, Weg zurück zum ATH und Zyklusvergleich, ohne neue
+Berechnungslogik, Datenquellen oder Architekturänderungen.
 
 Die App ist aktuell:
 
@@ -39,11 +38,12 @@ Die App ist aktuell:
   Fremd-CSV-Dateien im öffentlichen Repository
 - Verbesserte CSV-Datenprüfung mit flexibler Header-Erkennung,
   Duplikatbereinigung, Sortierhinweis, Import-Metadaten und Datenvorschau
+- Methodik-Hinweise zu ATH, Drawdown, Weg zurück zum ATH und Zyklusvergleich
+  ohne Prognose, Signal oder Anlageberatung
 
 ## Kurzfristig sinnvoll
 
 - Datenquellen-Dokumentation für externe historische BTC-CSV-Exporte
-- Kurze methodische Hinweise zu ATH, Drawdown und Zyklusvergleich
 - Optional: Export- oder Notizfunktion für lokale Analyse-Snapshots
 
 ## Später möglich

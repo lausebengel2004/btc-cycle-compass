@@ -578,6 +578,33 @@ h1 {
   line-height: 1.6;
 }
 
+.methodology-notes__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.methodology-notes__card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(36, 77, 92, 0.16);
+  border-radius: 6px;
+  background: rgba(246, 243, 237, 0.54);
+}
+
+.methodology-notes__card h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.methodology-notes__card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 code {
   display: block;
   width: fit-content;
@@ -634,6 +661,10 @@ code {
   .chart-legend__items {
     grid-template-columns: 1fr;
   }
+
+  .methodology-notes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 520px) {
@@ -650,6 +681,10 @@ code {
   }
 
   .csv-import-panel__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .methodology-notes__grid {
     grid-template-columns: 1fr;
   }
 }

@@ -3,6 +3,24 @@
 Alle nennenswerten Änderungen am BTC Cycle Compass werden in dieser Datei
 dokumentiert.
 
+## [0.23.0] - 2026-05-06
+
+### Added
+
+- Neue Methodik-Hinweise zu ATH, Drawdown, Weg zurück zum ATH und
+  Zyklusvergleich.
+- Vier kurze Erklärungskarten, die die bestehenden Kennzahlen sachlich und
+  anfängerfreundlich einordnen.
+- Klarstellung, dass die Aussagen vom aktuell geladenen Datensatz abhängen und
+  keine Prognose, Anlageberatung oder Kauf-/Verkaufssignale darstellen.
+
+### Changed
+
+- README und Roadmap auf das Methodik-Release aktualisiert.
+- Version auf `0.23.0` erhöht.
+- Keine Berechnungslogik, keine API, keine Netzwerk-Requests und keine neue
+  Dependency geändert.
+
 ## [0.22.0] - 2026-05-06
 
 ### Added
