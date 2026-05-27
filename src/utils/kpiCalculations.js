@@ -1,4 +1,7 @@
+import { halvingEvents } from '../data/halvingEvents.js'
 import { formatUsd } from './formatters.js'
+
+const millisecondsPerDay = 24 * 60 * 60 * 1000
 
 function formatPercent(value) {
   return new Intl.NumberFormat('en-US', {
@@ -11,6 +14,31 @@ function formatSignedPercent(value) {
   const prefix = value > 0 ? '+' : ''
 
   return `${prefix}${value.toFixed(1)}%`
+}
+
+function getUtcTimestamp(date) {
+  const [year, month, day] = date.split('-').map(Number)
+
+  return Date.UTC(year, month - 1, day)
+}
+
+function calculateDaysSinceLastHalving(latestDate) {
+  const lastHalving = halvingEvents
+    .filter((event) => event.type === 'halving' && event.date <= latestDate)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .at(-1)
+
+  if (!lastHalving) {
+    return null
+  }
+
+  return {
+    days: Math.round(
+      (getUtcTimestamp(latestDate) - getUtcTimestamp(lastHalving.date)) /
+        millisecondsPerDay,
+    ),
+    date: lastHalving.date,
+  }
 }
 
 function calculateCagr(currentValue, previousValue, years) {
@@ -50,6 +78,7 @@ export function createKpisFromHistoricalData(data) {
   const drawdownFromAthPercent = ((currentClose - athClose) / athClose) * 100
   const gainToAthPercent = ((athClose - currentClose) / currentClose) * 100
   const isAtAth = currentClose === athClose
+  const daysSinceLastHalving = calculateDaysSinceLastHalving(latest.date)
 
   const fourYearCagr = calculateCagr(latest?.close, fourYearsAgo?.close, 4)
   const fourYearCagrs = sortedData
@@ -90,6 +119,17 @@ export function createKpisFromHistoricalData(data) {
     {
       label: 'Weg zurück zum ATH',
       value: isAtAth ? '0.0%' : formatSignedPercent(gainToAthPercent),
+    },
+    {
+      label: 'Tage seit letztem Halving',
+      value:
+        daysSinceLastHalving === null
+          ? '-'
+          : daysSinceLastHalving.days.toLocaleString('de-DE'),
+      detail:
+        daysSinceLastHalving === null
+          ? 'kein Halving im Datensatz'
+          : `seit ${daysSinceLastHalving.date}`,
     },
   ]
 }
